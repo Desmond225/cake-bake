@@ -1,0 +1,18 @@
+<h1>{{ recipe.recipe_text }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'cake:rate' recipe.id %}" method="post">
+{% csrf_token %}
+{% for rating in recipe.rating_set.all %}
+    <input type="radio" name="rating" id="rating{{ forloop.counter }}" value="{{rating.id}}">
+    <label for="rating{{ forloop.counter }}">{{ rating.rating_text }}</label>
+<br>
+{% endfor %}
+<input type="submit" value="Rate">
+</form>
+<!-- <ul>
+  {% for ingredients in recipe.ingredients_set.all %}
+  <li>{{ ingredients.ingredients_text }}</li>
+{% endfor %}
+</ul> -->

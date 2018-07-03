@@ -1,0 +1,9 @@
+<h1>{{ recipe.recipe_text }}</h1>
+
+<ul>
+  {% for rating in recipe.rating_set.all %}
+  <li>{{ rating.rating_text }} -- {{rating.votes}} vote{{rating.votes|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'cake:detail' recipe.id %}">Rate again?</a>
